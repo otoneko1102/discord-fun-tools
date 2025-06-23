@@ -1,0 +1,14 @@
+# Secret
+.env
+tests
+
+# Extra
+node_modules
+package-lock.json
+
+# Folders
+conf
+lib
+
+# Files
+config.js
