@@ -1,4 +1,4 @@
-const { removes, isOnlyKanji, containsSticker, setChannelSlowmode } = require("../../lib/tuita");
+const { removes, isOnlyKanji, containsSticker, setChannelSlowmode } = require("../../lib/src/tuita");
 const { Client, Message, PartialMessage, MessageEmbed } = require("discord.js");
 
 /**
