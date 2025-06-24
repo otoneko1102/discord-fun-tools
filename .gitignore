@@ -6,9 +6,9 @@ tests
 node_modules
 package-lock.json
 
-# Folders
-conf
-lib
-
 # Files
+conf/twitterRss.js
+conf/univRss.js
+lib/twitterRss.json
+lib/univRss.json
 config.js
