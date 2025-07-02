@@ -1,4 +1,4 @@
-const { Client, Message, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { Client, Message } = require("discord.js");
 const displus = require("displus");
 
 /**
@@ -9,12 +9,14 @@ const displus = require("displus");
  */
 module.exports = async (client, message, config) => {
   if (message.author.bot) return;
+
+  if (!message?.content) return;
   const content = displus.removeHiddenText(message.content);
   const regex = /https?:\/\/(?:www\.)?discord(?:app)?\.com\/channels\/(\d{17,19})\/(\d{17,19})\/(\d{17,19})/g;
   const matches = content.matchAll(regex);
 
   for (const match of matches) {
-    const [fullMatch, guildId, channelId, messageId] = match;
+    const [_, guildId, channelId, messageId] = match;
 
     try {
       const guild = client.guilds.cache.get(guildId);
