@@ -13,7 +13,9 @@ module.exports = (client, message, config) => {
     if (!message?.content) return;
     const content = displus.removeHiddenText(message.content);
     const regex = /(https:\/\/(?:x\.com|twitter\.com)\/\w+\/status\/\w+)/g;
-    const urls = content.match(regex);
+    const urls = content?.match(regex) || [];
+
+    if (urls?.length <= 0) return;
 
     const fixedContent = [];
     for (const url of urls) {

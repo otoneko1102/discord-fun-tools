@@ -1,4 +1,5 @@
-const { Client, Message, MessageEmbed } = require('discord.js');
+const { Client, Interaction, MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require("@discordjs/builders");
 const osu = require('node-os-utils');
 const cpu = osu.cpu;
 const mem = osu.mem;
@@ -7,19 +8,19 @@ const disk = osu.drive;
 module.exports = {
   name: "ping",
   usage: "ping",
-  aliases: ["p"],
   description: "Pong!",
+  register: new SlashCommandBuilder(),
   /**
    * @param {Client} client - Discord.js client
-   * @param {Message} message - Discord.js message
-   * @param {string[]} args - args
+   * @param {Interaction} interaction - Discord.js interaction
    * @param {*} config - config
    * @returns none
    */
-  async execute(client, message, args, config) {
-    const sent = await message.reply("Loading...");
+  async execute(client, interaction, config) {
+    interaction.reply("Loading...");
+    const sent = await interaction.fetchReply();
 
-    const latency = sent.createdTimestamp - message.createdTimestamp;
+    const latency = sent.createdTimestamp - interaction.createdTimestamp;
     const wsPing = client.ws.ping;
 
     const [cpuUsage, memInfo, diskInfo] = await Promise.all([
@@ -40,6 +41,6 @@ module.exports = {
       )
       .setTimestamp()
 
-    sent.edit({ content: null, embeds: [embed] });
+    interaction.editReply({ content: null, embeds: [embed] });
   }
 }
