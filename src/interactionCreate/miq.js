@@ -44,15 +44,6 @@ module.exports = async (client, interaction, config) => {
           .setFromObject(imageData, true);
         const responce = await miq.generateBeta();
 
-        /*
-        const row = new MessageActionRow()
-          .addComponents(
-            new MessageButton()
-              .setCustomId(`miq-color-${isColor ? "0" : "1"}-${messageId}`)
-              .setLabel(`Change to ${isColor ? "Grayscale" : "Color"}`)
-              .setStyle("PRIMARY")
-          )
-        */
         const row = interaction.message.components[0];
         row.components[0].customId = `miq-color-${isColor ? "0" : "1"}-${messageId}`;
         row.components[0].label = `Change to ${isColor ? "Grayscale" : "Color"}`;
