@@ -55,6 +55,7 @@ module.exports = async (client, interaction, config) => {
         });
       }
 
+      // remove
       if (args[0] === "remove") {
         await interaction.update({
           content: `Removed by **${interaction.user.tag}**`,
