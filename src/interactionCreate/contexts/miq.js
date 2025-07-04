@@ -22,7 +22,7 @@ module.exports = {
 
     const imageData = {
       text: content,
-      avatar: message.member.displayAvatarURL({ size: 4096, format: "jpg" }) || message.author.displayAvatarURL({ size: 4096, format: "jpg" }),
+      avatar: message.member?.displayAvatarURL({ size: 4096, format: "jpg" }) || message.author?.displayAvatarURL({ size: 4096, format: "jpg" }),
       username: message.author.tag,
       display_name: message.member.displayName || message.author.displayName,
       color: false,
@@ -40,8 +40,12 @@ module.exports = {
         new MessageButton()
           .setCustomId(`miq-color-1-${message.id}`)
           .setLabel("Change to Color")
-          .setStyle("PRIMARY")
-      )
+          .setStyle("PRIMARY"),
+        new MessageButton()
+          .setCustomId("miq-remove")
+          .setLabel("Remove Quote")
+          .setStyle("DANGER")
+      );
 
     await interaction.editReply({
       content: null,
