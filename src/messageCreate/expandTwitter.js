@@ -43,11 +43,12 @@ module.exports = (client, message, config) => {
       setTimeout(() => {
         if (isSent) {
           try {
-            message.suppressEmbeds(true);
+            const newMessage = message.channel.messages.cache?.get(message.id);
+            if (newMessage) newMessage.suppressEmbeds(true);
           } catch (e) {
             console.error(e);
           }
         }
-      }, 300);
+      }, 500);
     }
 };
